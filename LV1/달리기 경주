@@ -1,0 +1,18 @@
+# 달리기 경주
+
+def solution(players, callings):
+    answer = []
+    
+    d = dict() # <<-- "각 사람마다 현재 등수를 기록할 딕셔너리 자료형의 선언입니다..!!"
+    for i, player in enumerate(players):
+        d[player] = i # <<-- "인덱싱을 편하게 활용하기 위해 인덱스 넘버로 순위를 부여..!!"
+    
+    for calling in callings:
+        d[calling] -= 1
+        d[players[d[calling]]] += 1
+        
+        players[d[calling]], players[d[calling] + 1] = calling, players[d[calling]]
+    
+    answer = players
+    
+    return answer
